@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
+        sh 'sudo chmod -R ug+w .;'
         sh 'echo passed'
         git branch: 'main', url: 'https://github.com/HARSHAL732001/project-cicd.git'
       }
