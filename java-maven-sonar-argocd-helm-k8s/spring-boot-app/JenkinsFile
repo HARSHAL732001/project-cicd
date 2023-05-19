@@ -9,7 +9,7 @@ pipeline {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        //git branch: 'main', url: 'https://github.com/HARSHAL732001/project-cicd.git'
+        git branch: 'main', url: 'https://github.com/HARSHAL732001/project-cicd.git'
       }
     }
     stage('Build and Test') {
@@ -60,6 +60,7 @@ pipeline {
                     git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
                     git commit -m "Update deployment image to version ${BUILD_NUMBER}"
                     git push https://${GITHUB_TOKEN}@github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} HEAD:main
+                    rm -rf *
                 '''
             }
         }
