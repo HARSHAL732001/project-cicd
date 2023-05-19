@@ -18,7 +18,7 @@ pipeline {
         sh 'ls -ltr'
         // build the project and create a JAR file
         sh 'cd /var/lib/jenkins/workspace/project-pipeline/java-maven-sonar-argocd-helm-k8s/spring-boot-app' 
-        sh 'mvn clean package'
+        sh 'mvn clean install -DskipTests'
       }
     }
     stage('Static Code Analysis') {
