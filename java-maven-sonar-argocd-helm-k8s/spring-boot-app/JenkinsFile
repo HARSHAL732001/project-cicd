@@ -45,6 +45,15 @@ pipeline {
         }
       }
     }
+    stage('Trivy Image Scan') {
+  steps {
+    script {
+      def imageName = "harshthakare70/ultimate-cicd:${BUILD_NUMBER}"
+      sh 'sudo trivy image $imageName'
+    }
+  }
+}
+
     stage('Update Deployment File') {
         environment {
             GIT_REPO_NAME = "project-cicd"
