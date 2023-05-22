@@ -48,7 +48,7 @@ pipeline {
     stage('Trivy Image Scan') {
   steps {
     script {
-      def imageName = "harshthakare70/ultimate-cicd:${BUILD_NUMBER}"
+      def imageName = "harshthakare70/ultimate-cicd:5"
       sh "trivy image $imageName"
     }
   }
