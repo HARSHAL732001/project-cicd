@@ -70,7 +70,8 @@ pipeline {
             script{
             withDockerRegistry(credentialsId: 'docker-cred') {
             sh "docker run -it -p 8080:8080 harshthakare70/ultimate-cicd:${BUILD_NUMBER}"
-           }
+            }
+          }
         }
       }
     }
