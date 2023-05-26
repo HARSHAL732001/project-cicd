@@ -19,11 +19,6 @@ pipeline {
         sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn clean package'
       }
     }
-    stage('Unit Tests') {
-      steps {
-        sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn test'
-        }
-    }
     stage('Static Code Analysis') {
       environment {
         SONAR_URL = "http://65.1.134.113:9000"
@@ -33,6 +28,11 @@ pipeline {
           sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}'
         }
       }
+    }
+    stage('Unit Tests') {
+      steps {
+        sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn test'
+        }
     }
     stage('Build and Push Docker Image') {
       environment {
@@ -49,6 +49,11 @@ pipeline {
             }
         }
       }
+    }
+    stage('Deploy Using Docker') {
+       steps {
+             sh 'docker run -d --name project-container -p 8080:8080 ${DOCKER_IMAGE}'
+             }
     }
     stage('Update Deployment File') {
         environment {
