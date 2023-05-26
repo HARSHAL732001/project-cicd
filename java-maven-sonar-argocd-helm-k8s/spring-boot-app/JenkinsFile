@@ -52,7 +52,7 @@ pipeline {
     }
     stage('Deploy Using Docker') {
        steps {
-             sh 'docker run -d --name project-container -p 8080:8080 ${DOCKER_IMAGE}'
+             sh 'docker run -d --name project-container -p 8080:8080 ${DOCKER_IMAGE} .'
              }
     }
     stage('Update Deployment File') {
