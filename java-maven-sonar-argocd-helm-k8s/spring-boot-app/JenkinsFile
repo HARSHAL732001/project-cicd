@@ -5,6 +5,9 @@ pipeline {
       args '--user root -v /var/run/docker.sock:/var/run/docker.sock' // mount Docker socket to access the host's Docker daemon
     }
   }
+  parameters {
+      string(name: 'SONARQUBE_IP', defaultValue: 'x.x.x.x', description: 'Description of the string parameter')
+    }
   stages {
     stage('Checkout') {
       steps {
@@ -21,7 +24,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://65.1.134.113:9000"
+        SONAR_URL = "http://${params.SONARQUBE_IP}:9000"
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
