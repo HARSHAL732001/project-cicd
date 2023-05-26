@@ -21,7 +21,7 @@ pipeline {
     }
     stage('Unit Tests') {
       steps {
-        sh 'mvn test'
+        sh 'cd java-maven-sonar-argocd-helm-k8s/spring-boot-app && mvn test'
         }
     }
     stage('Static Code Analysis') {
