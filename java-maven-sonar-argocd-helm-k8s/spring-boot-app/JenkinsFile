@@ -52,7 +52,7 @@ pipeline {
     }
     stage('Deploy Using Docker') {
        steps {
-             sh 'docker run -d --name testcontainer1 -p 8080:8080 harshthakare70/ultimate-cicd:${BUILD_NUMBER} .'
+             sh 'docker run -d --name testcontainer -p 8080:8080 harshthakare70/ultimate-cicd:${BUILD_NUMBER} .'
              }
     }
     stage('Update Deployment File') {
