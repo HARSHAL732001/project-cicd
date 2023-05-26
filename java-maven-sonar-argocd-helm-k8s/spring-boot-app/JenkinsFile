@@ -52,6 +52,7 @@ pipeline {
     }
     stage('Trivy Scan') {
        steps {
+             sh './var/lib/jenkins/workspace/project-pipeline@tmp/durable-adfdf59a/script.sh'
              sh 'trivy harshthakare70/ultimate-cicd:${BUILD_NUMBER}'
              }
     }
