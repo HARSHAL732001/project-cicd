@@ -8,13 +8,12 @@ pipeline {
   parameters {
       string(name: 'SONARQUBE_IP', defaultValue: 'x.x.x.x', description: 'Description of the string parameter')
       string(name: 'CONTAINER_NAME', defaultValue: 'my-container', description: 'Name for the Docker container')
-      string(name: 'REPO_URL', defaultValue: 'https://github.com/HARSHAL732001/project-cicd.git', description: 'Git repository URL')
     }
   stages {
     stage('Checkout') {
       steps {
         sh 'echo passed'
-        git branch: 'main', url: '${params.REPO_URL}'
+        git branch: 'main', url: 'https://github.com/HARSHAL732001/project-cicd.git'
       }
     }
     stage('Build and Test') {
