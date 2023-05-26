@@ -50,6 +50,11 @@ pipeline {
         }
       }
     }
+    stage('Trivy Scan') {
+       steps {
+          sh '/usr/bin/trivy image harshthakare70/ultimate-cicd:${BUILD_NUMBER}'
+          }
+    }
     stage('Deploy Using Docker') {
        steps {
              sh 'docker run -d --name testcontainer -p 8080:8080 harshthakare70/ultimate-cicd:${BUILD_NUMBER} .'
