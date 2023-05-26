@@ -7,7 +7,6 @@ pipeline {
   }
   parameters {
       string(name: 'SONARQUBE_IP', defaultValue: 'x.x.x.x', description: 'Description of the string parameter')
-      string(name: 'CONTAINER_NAME', defaultValue: 'my-container', description: 'Name for the Docker container')
   }
   stages {
     stage('Checkout') {
@@ -56,7 +55,7 @@ pipeline {
     }
     stage('Deploy Using Docker') {
        steps {
-             sh 'docker run -d --name ${params.CONTAINER_NAME} -p 8080:8080 harshthakare70/ultimate-cicd:${BUILD_NUMBER} .'
+             sh 'docker run -d --name mycontainer1 -p 8080:8080 harshthakare70/ultimate-cicd:${BUILD_NUMBER} .'
              }
     }
     stage('Update Deployment File') {
