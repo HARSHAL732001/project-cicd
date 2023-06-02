@@ -39,7 +39,7 @@ pipeline {
     }
     stage('Build and Push Docker Image') {
       environment {
-        DOCKER_IMAGE = "harshthakare70/ultimate-cicd:${BUILD_NUMBER}"
+        DOCKER_IMAGE = "harshthakare70/sample-cicd:${BUILD_NUMBER}"
         // DOCKERFILE_LOCATION = "java-maven-sonar-argocd-helm-k8s/spring-boot-app/Dockerfile"
         REGISTRY_CREDENTIALS = credentials('docker-cred')
       }
@@ -55,7 +55,7 @@ pipeline {
     }
     stage('Deploy Using Docker') {
        steps {
-             sh 'docker run -d --name mycontainer1 -p 8080:8080 harshthakare70/ultimate-cicd:${BUILD_NUMBER} .'
+             sh 'docker run -d --name mycontainer1 -p 8080:8080 harshthakare70/sample-cicd:${BUILD_NUMBER} .'
              }
     }
     stage('Update Deployment File') {
